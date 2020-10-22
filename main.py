@@ -62,11 +62,11 @@ def text_recognition_by_region(region):
         # Create second window to output results
         message = np.zeros((mWidth, mHeight, 3), np.uint8)
         message[:, 0:mWidth] = (255, 255, 255)
-        message = cv2.putText(message, 'Texto detectado:', (100, 150)
+        message = cv2.putText(message, 'Text detected:', (100, 150)
                               , cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
         message = cv2.putText(message, text, (200, 400)
                               , cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
-        cv2.imshow("Resultado", message)
+        cv2.imshow("Result", message)
     return None
 
 

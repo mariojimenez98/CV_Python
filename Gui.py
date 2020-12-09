@@ -1,6 +1,8 @@
 import wx
 
-from container import MainContainer
+from container.MainContainer import MainContainer
+from frame.AboutFrame import AboutFrame
+from frame.InstructionsFrame import InstructionsFrame
 
 
 def start():
@@ -8,7 +10,7 @@ def start():
     frame = Gui(None, "Word Scanner")
     sizer = wx.BoxSizer(wx.VERTICAL)
     frame.SetSizer(sizer)
-    MainContainer.MainContainer(frame)
+    MainContainer(frame)
     app.MainLoop()
 
 
@@ -18,7 +20,8 @@ class Gui(wx.Frame):
         self.CreateStatusBar()
 
         fileMenu = wx.Menu()
-        aboutMenu = fileMenu.Append(wx.ID_ABOUT, "&Acerca", " Acerca del programa")
+        aboutMenu = fileMenu.Append(wx.ID_ABOUT, "&Acerca", "Acerca del programa")
+        instructionsMenu = fileMenu.Append(wx.ID_HELP, "Instrucciones", "Instrucciones para ejecutar programa")
         fileMenu.AppendSeparator()
         exitMenu = fileMenu.Append(wx.ID_EXIT, "E&xit", "Salir")
 
@@ -29,10 +32,13 @@ class Gui(wx.Frame):
 
         self.Bind(wx.EVT_MENU, self.onAbout, aboutMenu)
         self.Bind(wx.EVT_MENU, self.onExit, exitMenu)
+        self.Bind(wx.EVT_MENU, self.onInstructions, instructionsMenu)
 
+    def onInstructions(self, event):
+        InstructionsFrame(event)
 
     def onAbout(self, event):
-        print({"Click en about", event})
+        AboutFrame(event)
 
     def onExit(self, event):
-        print({"Click en exit", event})
+        wx.Exit()

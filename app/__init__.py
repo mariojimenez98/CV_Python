@@ -76,7 +76,7 @@ def _text_recognition_by_region(region):
     if text != "" and 2 < len(text) < 9:
         mWidth, mHeight = 600, 600
 
-        # Create second window to output results
+        # Create second frame to output results
         message = np.zeros((mWidth, mHeight, 3), np.uint8)
         message[:, 0:mWidth] = (255, 255, 255)
         message = cv2.putText(message, 'Text detected:', (100, 150)
